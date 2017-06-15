@@ -1,4 +1,4 @@
-﻿
+﻿// Microsoft Azure Data Catalog team SDK sample 
 
 using System;
 using System.Collections.Generic;
@@ -8,14 +8,19 @@ using Microsoft.Azure.DataCatalog.Rest;
 using Microsoft.Azure.DataCatalog.Rest.Models;
 using Microsoft.Rest;
 
-namespace ConsoleApplication1
+namespace ADCSDKExample
 {
     class Program
     {
 
-        private const string ClientId = "9441e260-82fc-4cf2-a64b-68f3bc9f23e2";
+        // TODO: Replace the Client ID placeholder with a client ID authorized to access your Azure Active Directory
+        // To learn how to register a client app and get a Client ID, see https://msdn.microsoft.com/library/azure/mt403303.aspx
+        private const string ClientId = "PLACEHOLDER";
+        // TODO: Replace the catalog name placeholder with the name of your catalog
+        private const string CatalogName = "PLACEHOLDER";
+
         private const string BaseUri = "https://api.azuredatacatalog.com/catalogs";
-        private static readonly Settings Settings = new Settings("TestDir", "2016-03-30");
+        private static readonly Settings Settings = new Settings(CatalogName, "2016-03-30");
         static void Main()
         {
             AdcAuthenticationContext authContext = new AdcAuthenticationContext(ClientId);
