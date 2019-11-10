@@ -41,14 +41,6 @@
       <SpecificVersion>False</SpecificVersion>
       <Name>Microsoft.IdentityModel.Clients.ActiveDirectory.Platform</Name>
     </Reference>
-    <Reference Include="D:\NuGetPackages\Microsoft.Rest.ClientRuntime.3.0.3\lib\net45\Microsoft.Rest.ClientRuntime.dll">
-      <SpecificVersion>False</SpecificVersion>
-      <Name>Microsoft.Rest.ClientRuntime</Name>
-    </Reference>
-    <Reference Include="D:\NuGetPackages\Microsoft.Rest.ClientRuntime.Azure.4.0.3\lib\net45\Microsoft.Rest.ClientRuntime.Azure.dll">
-      <SpecificVersion>False</SpecificVersion>
-      <Name>Microsoft.Rest.ClientRuntime.Azure</Name>
-    </Reference>
     <Reference Include="..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll">
       <SpecificVersion>False</SpecificVersion>
       <Name>Newtonsoft.Json</Name>
@@ -57,8 +49,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SDK\Microsoft.Azure.DataCatalog\Microsoft.Azure.DataCatalog.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.20\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +76,12 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AzureDataCatalogSDK\AzureDataCatalogSDK.csproj">
+      <Project>{ec3ab308-a35d-4157-8b03-0e5151370b0d}</Project>
+      <Name>AzureDataCatalogSDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

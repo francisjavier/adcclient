@@ -61,7 +61,6 @@ namespace Microsoft.Azure.DataCatalog.Rest.Models
         /// <param name="info">Serialization info.</param>
         /// <param name="context">Streaming context.</param>
         protected ErrorException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
-            : base(info, context)
         {
         }
 
