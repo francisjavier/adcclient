@@ -27,8 +27,8 @@ namespace ADCClientExample
 
         private static void Main()
         {
-            var authContext = new AuthenticationContext(authorityUri);
-            ServiceClientCredentials creds = new TokenCredentials(authContext.AcquireTokenAsync(resourceUri, new ClientCredential(clientIDFromAzureAppRegistration, spsecret)).Result.AccessToken);
+            //var authContext = new AuthenticationContext(authorityUri);
+            //ServiceClientCredentials creds = new TokenCredentials(authContext.AcquireTokenAsync(resourceUri, new ClientCredential(clientIDFromAzureAppRegistration, spsecret)).Result.AccessToken);
             var restClient = new DataCatalogRestClient(new Uri(BaseUri), creds);
 
             var tableToRegister = new Table(name: "testtable", dsl: new Dsl("tds",

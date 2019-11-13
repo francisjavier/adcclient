@@ -4,12 +4,13 @@ namespace AzureDataCatalogSDK.Configuration
 {
     public interface IDataCatalogConfiguration
     {
-        string AuthorityURI { get; set; }
-        string ResourceURI { get; set; }
-        string ClientId { get; set; }
-        string BaseURI { get; set; }
-        string ClientSecret { get; set; }
-        string ADCAccessTokenKey { get; set; }
+        string AuthorityURI { get; }
+        string ResourceURI { get; }
+        string ClientId { get; }
+        string BaseURI { get; }
+        string ClientSecret { get; }
+        string ADCAccessTokenKey { get; }
+        string AccessTokenCacheDurationSubtraction { get; }
     }
 
     public class DataCatalogConfiguration : IDataCatalogConfiguration
@@ -22,6 +23,7 @@ namespace AzureDataCatalogSDK.Configuration
         public string ClientSecret { get; set; }
         public string BaseURI { get; set; }
         public string ADCAccessTokenKey { get; set; }
+        public string AccessTokenCacheDurationSubtraction { get; set; }
 
         public DataCatalogConfiguration(IConfiguration configuration)
         {

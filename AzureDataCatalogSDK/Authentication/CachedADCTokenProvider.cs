@@ -23,13 +23,12 @@ namespace AzureDataCatalogSDK.Authentication
         {
             var cachedAuthenticationResponse = await _cache.GetOrAddAsync(_dataCatalogConfiguration.ADCAccessTokenKey, async entry =>
             {
-                var authenticationResponse = await Auth0TokenProvider.RequestAuthenticationResponse();
+                var authenticationResult = await _adcTokenProvider.GetAuthenticationResult();
                 //Set up the token to be removed from the cache sometime before it actually expires
-                var timespanToSubtract = TimeSpan.Parse(Auth0Configuration.AccessTokenCacheDurationSubtraction);
-                DateTimeOffset expirationDate = authenticationResponse.accessTokenExpiresAt.Subtract(timespanToSubtract);
-                Logger.LogInformation("Auth0 Access Token Cached expires in " + expirationDate);
+                var timespanToSubtract = TimeSpan.Parse(_dataCatalogConfiguration.AccessTokenCacheDurationSubtraction);
+                var expirationDate = authenticationResult.ExpiresOn.Subtract(timespanToSubtract);
                 entry.SetAbsoluteExpiration(expirationDate);
-                return authenticationResponse;
+                return authenticationResult.AccessToken;
             });
 
             return cachedAuthenticationResponse;

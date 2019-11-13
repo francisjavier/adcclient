@@ -6,7 +6,7 @@ namespace AzureDataCatalogSDK.Authentication
 {
     public interface IADCTokenProvider
     {
-        Task<string> GetToken();
+        Task<AuthenticationResult> GetAuthenticationResult();
     }
 
     public class ADCTokenProvider : IADCTokenProvider
@@ -18,12 +18,12 @@ namespace AzureDataCatalogSDK.Authentication
             _dataCatalogConfiguration = dataCatalogConfiguration;
         }
 
-        public async Task<string> GetToken()
+        public async Task<AuthenticationResult> GetAuthenticationResult()
         {
             var authContext = new AuthenticationContext(_dataCatalogConfiguration.AuthorityURI);
-            var accessCredentials = await authContext.AcquireTokenAsync(_dataCatalogConfiguration.ResourceURI,
+            var authenticationResult = await authContext.AcquireTokenAsync(_dataCatalogConfiguration.ResourceURI,
                 new ClientCredential(_dataCatalogConfiguration.ClientId, _dataCatalogConfiguration.ClientSecret));
-            return accessCredentials?.AccessToken ?? string.Empty;
+            return authenticationResult;
         }
     }
 }
