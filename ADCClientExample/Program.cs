@@ -7,6 +7,8 @@ using Microsoft.Rest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autofac;
+using AzureDataCatalogSDK.Authentication;
 
 namespace ADCClientExample
 {
@@ -15,20 +17,18 @@ namespace ADCClientExample
         // TODO: Replace the Client ID placeholder with a client ID authorized to access your Azure Active Directory
         // To learn how to register a client app and get a Client ID, see https://msdn.microsoft.com/library/azure/mt403303.aspx
         private const string CatalogName = "DefaultCatalog";
-
-        static string resourceUri = "https://api.azuredatacatalog.com";
         private const string BaseUri = "https://api.azuredatacatalog.com/catalogs";
 
-        private static string clientIDFromAzureAppRegistration = "4af87177-3ba9-4813-a7f1-dd1bc81e23d3";
-        private static string authorityUri = string.Format("https://login.windows.net/{0}", "d9ce8388-5b6d-4e84-8f48-c36a5f18c794");
-        private static string spsecret = "-DjzQ3::zL19XS3dbcKRf@kUJ.RQf8Jg";
 
         private static readonly Settings Settings = new Settings(CatalogName, "2016-03-30");
 
-        private static void Main()
+        private static void Main(string[] args)
         {
-            //var authContext = new AuthenticationContext(authorityUri);
-            //ServiceClientCredentials creds = new TokenCredentials(authContext.AcquireTokenAsync(resourceUri, new ClientCredential(clientIDFromAzureAppRegistration, spsecret)).Result.AccessToken);
+            var container = Bootstrapper.Initialize(args);
+            var tokenProvider = container.Resolve<ICachedADCTokenProvider>();
+            var token = tokenProvider.GetToken().Result;
+
+            ServiceClientCredentials creds = new TokenCredentials(token);
             var restClient = new DataCatalogRestClient(new Uri(BaseUri), creds);
 
             var tableToRegister = new Table(name: "testtable", dsl: new Dsl("tds",
