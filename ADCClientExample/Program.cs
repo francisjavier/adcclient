@@ -26,7 +26,7 @@ namespace ADCClientExample
         {
             var container = Bootstrapper.Initialize(args);
             var tokenProvider = container.Resolve<ICachedADCTokenProvider>();
-            var token = tokenProvider.GetToken().Result;
+            var token = tokenProvider.GetToken().GetAwaiter().GetResult();
 
             ServiceClientCredentials creds = new TokenCredentials(token);
             var restClient = new DataCatalogRestClient(new Uri(BaseUri), creds);
