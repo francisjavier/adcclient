@@ -13,7 +13,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
     using Microsoft.Rest.Azure;
     using Models;
 
-    public partial class DataCatalogRestClient : Microsoft.Rest.ServiceClient<DataCatalogRestClient>, IDataCatalogRestClient, IAzureClient
+    public partial class AzureDataCatalogRestClient : Microsoft.Rest.ServiceClient<AzureDataCatalogRestClient>, IDataCatalogRestClient, IAzureClient
     {
         /// <summary>
         /// The base URI of the service.
@@ -107,7 +107,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// </summary>
         public virtual ICollectionOperations Collection { get; private set; }
 
-        public DataCatalogRestClient(IDataCatalogConfiguration dataCatalogConfiguration)
+        public AzureDataCatalogRestClient(IDataCatalogConfiguration dataCatalogConfiguration)
         {
             if (dataCatalogConfiguration == null)
             {

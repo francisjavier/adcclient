@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 
 namespace AzureDataCatalogSDK.Authentication
 {
-    public interface IADCTokenProvider
+    public interface IAzureDataCatalogTokenProvider
     {
         Task<AuthenticationResult> GetAuthenticationResult();
     }
 
-    public class ADCTokenProvider : IADCTokenProvider
+    public class AzureDataCatalogTokenProvider : IAzureDataCatalogTokenProvider
     {
         private readonly IDataCatalogConfiguration _dataCatalogConfiguration;
 
-        public ADCTokenProvider(IDataCatalogConfiguration dataCatalogConfiguration)
+        public AzureDataCatalogTokenProvider(IDataCatalogConfiguration dataCatalogConfiguration)
         {
             _dataCatalogConfiguration = dataCatalogConfiguration;
         }

@@ -5,6 +5,7 @@ using LazyCache;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Microsoft.Azure.DataCatalog.Rest;
 using IContainer = Autofac.IContainer;
 
 namespace ADCClientExample
@@ -25,8 +26,7 @@ namespace ADCClientExample
             serviceCollection.AddLazyCache(provider => new CachingService(new Lazy<ICacheProvider>(provider.GetRequiredService<ICacheProvider>())));
 
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterAssemblyTypes(typeof(Bootstrapper).Assembly).AsImplementedInterfaces();
-            containerBuilder.RegisterAssemblyTypes(typeof(ADCTokenProvider).Assembly).AsImplementedInterfaces();
+            containerBuilder.RegisterAssemblyTypes(typeof(AzureDataCatalogRestClient).Assembly).AsImplementedInterfaces();
             containerBuilder.RegisterInstance(configuration).As<IConfiguration>();
 
             containerBuilder.Populate(serviceCollection);

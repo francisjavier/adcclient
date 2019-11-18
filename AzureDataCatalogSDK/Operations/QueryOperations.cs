@@ -12,7 +12,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
     /// <summary>
     /// QueryOperations operations.
     /// </summary>
-    internal partial class QueryOperations : Microsoft.Rest.IServiceOperations<DataCatalogRestClient>, IQueryOperations
+    internal partial class QueryOperations : Microsoft.Rest.IServiceOperations<AzureDataCatalogRestClient>, IQueryOperations
     {
         /// <summary>
         /// Initializes a new instance of the QueryOperations class.
@@ -23,7 +23,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal QueryOperations(DataCatalogRestClient client)
+        internal QueryOperations(AzureDataCatalogRestClient client)
         {
             if (client == null) 
             {
@@ -33,9 +33,9 @@ namespace Microsoft.Azure.DataCatalog.Rest
         }
 
         /// <summary>
-        /// Gets a reference to the DataCatalogRestClient
+        /// Gets a reference to the AzureDataCatalogRestClient
         /// </summary>
-        public DataCatalogRestClient Client { get; private set; }
+        public AzureDataCatalogRestClient Client { get; private set; }
 
         /// <summary>
         /// Register Query

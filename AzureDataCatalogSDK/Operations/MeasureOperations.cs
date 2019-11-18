@@ -12,7 +12,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
     /// <summary>
     /// MeasureOperations operations.
     /// </summary>
-    internal partial class MeasureOperations : Microsoft.Rest.IServiceOperations<DataCatalogRestClient>, IMeasureOperations
+    internal partial class MeasureOperations : Microsoft.Rest.IServiceOperations<AzureDataCatalogRestClient>, IMeasureOperations
     {
         /// <summary>
         /// Initializes a new instance of the MeasureOperations class.
@@ -23,7 +23,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal MeasureOperations(DataCatalogRestClient client)
+        internal MeasureOperations(AzureDataCatalogRestClient client)
         {
             if (client == null) 
             {
@@ -33,9 +33,9 @@ namespace Microsoft.Azure.DataCatalog.Rest
         }
 
         /// <summary>
-        /// Gets a reference to the DataCatalogRestClient
+        /// Gets a reference to the AzureDataCatalogRestClient
         /// </summary>
-        public DataCatalogRestClient Client { get; private set; }
+        public AzureDataCatalogRestClient Client { get; private set; }
 
         /// <summary>
         /// Register Measure

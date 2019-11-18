@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace AzureDataCatalogSDK.Authentication
 {
-    public interface ICachedADCTokenProvider
+    public interface IAzureDataCatalogCachedTokenProvider
     {
         Task<string> GetToken();
     }
 
-    public class CachedADCTokenProvider : ICachedADCTokenProvider
+    public class AzureDataCatalogCachedTokenProvider : IAzureDataCatalogCachedTokenProvider
     {
-        private readonly IADCTokenProvider _adcTokenProvider;
+        private readonly IAzureDataCatalogTokenProvider _adcTokenProvider;
         private readonly IAppCache _cache;
         private readonly IDataCatalogConfiguration _dataCatalogConfiguration;
 
-        public CachedADCTokenProvider(IADCTokenProvider adcTokenProvider, IAppCache cache, IDataCatalogConfiguration dataCatalogConfiguration)
+        public AzureDataCatalogCachedTokenProvider(IAzureDataCatalogTokenProvider adcTokenProvider, IAppCache cache, IDataCatalogConfiguration dataCatalogConfiguration)
         {
             _adcTokenProvider = adcTokenProvider;
             _cache = cache;

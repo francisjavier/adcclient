@@ -12,7 +12,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
     /// <summary>
     /// TableOperations operations.
     /// </summary>
-    internal partial class TableOperations : Microsoft.Rest.IServiceOperations<DataCatalogRestClient>, ITableOperations
+    internal partial class TableOperations : Microsoft.Rest.IServiceOperations<AzureDataCatalogRestClient>, ITableOperations
     {
         /// <summary>
         /// Initializes a new instance of the TableOperations class.
@@ -23,7 +23,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal TableOperations(DataCatalogRestClient client)
+        internal TableOperations(AzureDataCatalogRestClient client)
         {
             if (client == null) 
             {
@@ -33,9 +33,9 @@ namespace Microsoft.Azure.DataCatalog.Rest
         }
 
         /// <summary>
-        /// Gets a reference to the DataCatalogRestClient
+        /// Gets a reference to the AzureDataCatalogRestClient
         /// </summary>
-        public DataCatalogRestClient Client { get; private set; }
+        public AzureDataCatalogRestClient Client { get; private set; }
 
         /// <summary>
         /// Register Table

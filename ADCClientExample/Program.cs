@@ -23,7 +23,7 @@ namespace ADCClientExample
         private static void Main(string[] args)
         {
             var container = Bootstrapper.Initialize(args);
-            var tokenProvider = container.Resolve<ICachedADCTokenProvider>();
+            var tokenProvider = container.Resolve<IAzureDataCatalogCachedTokenProvider>();
             var token = tokenProvider.GetToken().GetAwaiter().GetResult();
 
             var restClient = container.Resolve<IDataCatalogRestClient>();

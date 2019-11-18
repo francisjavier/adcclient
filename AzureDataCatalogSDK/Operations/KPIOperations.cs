@@ -12,7 +12,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
     /// <summary>
     /// KPIOperations operations.
     /// </summary>
-    internal partial class KPIOperations : Microsoft.Rest.IServiceOperations<DataCatalogRestClient>, IKPIOperations
+    internal partial class KPIOperations : Microsoft.Rest.IServiceOperations<AzureDataCatalogRestClient>, IKPIOperations
     {
         /// <summary>
         /// Initializes a new instance of the KPIOperations class.
@@ -23,7 +23,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        internal KPIOperations(DataCatalogRestClient client)
+        internal KPIOperations(AzureDataCatalogRestClient client)
         {
             if (client == null) 
             {
@@ -33,9 +33,9 @@ namespace Microsoft.Azure.DataCatalog.Rest
         }
 
         /// <summary>
-        /// Gets a reference to the DataCatalogRestClient
+        /// Gets a reference to the AzureDataCatalogRestClient
         /// </summary>
-        public DataCatalogRestClient Client { get; private set; }
+        public AzureDataCatalogRestClient Client { get; private set; }
 
         /// <summary>
         /// Register KPI
