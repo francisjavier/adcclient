@@ -17,8 +17,6 @@ namespace ADCClientExample
         // TODO: Replace the Client ID placeholder with a client ID authorized to access your Azure Active Directory
         // To learn how to register a client app and get a Client ID, see https://msdn.microsoft.com/library/azure/mt403303.aspx
         private const string CatalogName = "DefaultCatalog";
-        private const string BaseUri = "https://api.azuredatacatalog.com/catalogs";
-
 
         private static readonly Settings Settings = new Settings(CatalogName, "2016-03-30");
 
@@ -28,8 +26,8 @@ namespace ADCClientExample
             var tokenProvider = container.Resolve<ICachedADCTokenProvider>();
             var token = tokenProvider.GetToken().GetAwaiter().GetResult();
 
-            ServiceClientCredentials creds = new TokenCredentials(token);
-            var restClient = new DataCatalogRestClient(new Uri(BaseUri), creds);
+            var restClient = container.Resolve<IDataCatalogRestClient>();
+            restClient.SetCredentials(token);
 
             var tableToRegister = new Table(name: "testtable", dsl: new Dsl("tds",
                 new Dictionary<string, string>
