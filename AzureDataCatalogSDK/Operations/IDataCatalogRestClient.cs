@@ -59,6 +59,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// </summary>
         bool? GenerateClientRequestId { get; set; }
 
+        void SetCredentials(string accessToken);
 
         /// <summary>
         /// Gets the IContainerOperations.
@@ -104,6 +105,5 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// Gets the ICollectionOperations.
         /// </summary>
         ICollectionOperations Collection { get; }
-
     }
 }

@@ -107,7 +107,7 @@ namespace Microsoft.Azure.DataCatalog.Rest
         /// </summary>
         public virtual ICollectionOperations Collection { get; private set; }
 
-        public DataCatalogRestClient(ICachedADCTokenProvider cachedAdcTokenProvider, IDataCatalogConfiguration dataCatalogConfiguration)
+        public DataCatalogRestClient(IDataCatalogConfiguration dataCatalogConfiguration)
         {
             if (dataCatalogConfiguration == null)
             {
@@ -118,13 +118,15 @@ namespace Microsoft.Azure.DataCatalog.Rest
                 throw new System.ArgumentNullException("baseUri");
             }
 
-            var accessToken = cachedAdcTokenProvider.GetToken().GetAwaiter().GetResult();
-            this.Credentials = new TokenCredentials(accessToken);
-
             this.BaseUri = new Uri(dataCatalogConfiguration.BaseURI);
-            Credentials?.InitializeServiceClient(this);
 
             this.Initialize();
+        }
+
+        public void SetCredentials(string accessToken)
+        {
+            this.Credentials = new TokenCredentials(accessToken);
+            Credentials?.InitializeServiceClient(this);
         }
 
         /// <summary>

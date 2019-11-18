@@ -2,9 +2,13 @@
 
 using Microsoft.Azure.DataCatalog.Rest;
 using Microsoft.Azure.DataCatalog.Rest.Models;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.Rest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Autofac;
+using AzureDataCatalogSDK.Authentication;
 
 namespace ADCClientExample
 {
@@ -19,7 +23,11 @@ namespace ADCClientExample
         private static void Main(string[] args)
         {
             var container = Bootstrapper.Initialize(args);
+            var tokenProvider = container.Resolve<ICachedADCTokenProvider>();
+            var token = tokenProvider.GetToken().GetAwaiter().GetResult();
+
             var restClient = container.Resolve<IDataCatalogRestClient>();
+            restClient.SetCredentials(token);
 
             var tableToRegister = new Table(name: "testtable", dsl: new Dsl("tds",
                 new Dictionary<string, string>
